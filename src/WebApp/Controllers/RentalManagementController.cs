@@ -2,15 +2,16 @@
 
 public class RentalManagementController : Controller
 {
-    // private IRentalManagementAPI _rentalManagementAPI;
+    private IRentalManagementAPI _rentalManagementAPI;
+    private IRentalCarManagementAPI _rentalCarManagementAPI;
     private ICustomerManagementAPI _customerManagementAPI;
     private readonly Microsoft.Extensions.Logging.ILogger _logger;
     private ResiliencyHelper _resiliencyHelper;
 
-    public RentalManagementController(ICustomerManagementAPI customerManagementAPI, ILogger<RentalManagementController> logger)
-    // public RentalManagementController(IRentalManagementAPI rentalManagementAPI, ICustomerManagementAPI customerManagementAPI, ILogger<RentalManagementController> logger)
+    public RentalManagementController(IRentalManagementAPI rentalManagementAPI, IRentalCarManagementAPI rentalCarManagementAPI, ICustomerManagementAPI customerManagementAPI, ILogger<RentalManagementController> logger)
     {
-        // _rentalManagementAPI = rentalManagementAPI;
+        _rentalManagementAPI = rentalManagementAPI;
+        _rentalCarManagementAPI = rentalCarManagementAPI;
         _customerManagementAPI = customerManagementAPI;
         _logger = logger;
         _resiliencyHelper = new ResiliencyHelper(_logger);
@@ -21,16 +22,14 @@ public class RentalManagementController : Controller
     {
         return await _resiliencyHelper.ExecuteResilient(async () =>
         {
+            List<Rental> rentals = await _rentalManagementAPI.GetRentals();
+
             var model = new RentalManagementViewModel
             {
-                Rentals = new List<Rentals>()
+                Rentals = rentals
             };
 
-            // Rentals rentals = await _rentalManagementAPI.GetRentals();
-            // if (rentals?.Count > 0)
-            // {
-            //     model.Rentals.AddRange(rentals.OrderBy(r => r.StartDate));
-            // }
+            model.Rentals.OrderBy(r => r.StartDate);
 
             return View(model);
         }, View("Offline", new RentalManagementOfflineViewModel()));
@@ -50,7 +49,7 @@ public class RentalManagementController : Controller
                 Id = Guid.NewGuid(),
                 StartDate = currentDate,
                 EndDate = currentDate.AddDays(1),
-                // Vehicles = await GetAvailableVehiclesList()
+                RentalCars = await GetAvailableRentalCarsList(),
                 Customers = customers.Select(c => new SelectListItem { Value = c.CustomerId, Text = c.Name })
             };
             return View(model);
@@ -86,7 +85,7 @@ public class RentalManagementController : Controller
                         inputModel.Error = content.ErrorMessage;
 
                             // repopulate list of available vehicles in the model
-                            inputModel.Vehicles = await GetAvailableVehiclesList();
+                            inputModel.RentalCars = await GetAvailableRentalCarsList();
 
                             // back to New view
                             return View("New", inputModel);
@@ -103,15 +102,14 @@ public class RentalManagementController : Controller
         }
     }
     
-    private async Task<IEnumerable<SelectListItem>> GetAvailableVehiclesList()
+    private async Task<IEnumerable<SelectListItem>> GetAvailableRentalCarsList()
     {
-        return null;
-        // var vehicles = await _rentalManagementAPI.GetVehicles();
-        // return vehicles.Select(v =>
-        //     new SelectListItem
-        //     {
-        //         Value = v.LicenseNumber,
-        //         Text = $"{v.Brand} {v.Type} [{v.LicenseNumber}]"
-        //     });
+        var rentalCars = await _rentalCarManagementAPI.GetRentalCars();
+        return rentalCars.Select(rentalCar =>
+            new SelectListItem
+            {
+                Value = rentalCar.LicenseNumber,
+                Text = $"{rentalCar.Model.Brand.Name} {rentalCar.Model.Name} [{rentalCar.LicenseNumber}]"
+            });
     }
 }
