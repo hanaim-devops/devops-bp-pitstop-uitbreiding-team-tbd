@@ -41,3 +41,20 @@ Er is besloten om enkel de einddatum en de huurauto van de reservering te wijzig
 
 ### Gevolg
 Door enkel de einddatum en de huurauto van de reservering te wijzigen, kunnen we ontwikkeltijd inzetten voor andere functionaliteiten die meer waarde toevoegen.
+
+## ADR-004: Entity Framework Core vs Dapper
+
+### Context
+Bij de ontwikkeling van de applicatie moet een keuze gemaakt worden tussen Entity Framework Core en Dapper als ORM. Beiden
+zijn populair en hebben hun eigen voor- en nadelen. Wij moeten een keuze maken welke van de twee wij gaan gebruiken.
+
+### Beslissing
+We kiezen voor Entity Framework Core als ORM voor onze applicatie.
+
+### Redenatie
+- **Tijdsbesparing:** Entity Framework Core is een ORM die veel zaken voor ons afhandelt. Hierdoor hoeven wij minder code te schrijven en kunnen wij sneller ontwikkelen.
+- **Migraties:** Entity Framework Core heeft een ingebouwde migratie tool die het makkelijk maakt om de database te updaten. Dapper heeft deze tool niet.
+
+### Gevolg
+Door Entity Framework te kiezen kunnen we tijd besparen op de ontwikkeling van de applicatie. Dit betekent dat we sneller nieuwe functionaliteiten kunnen toevoegen en bugs kunnen oplossen.
+Doordat we beperkte tijd hebben om deze applicatie verder te ontwikkelen is het belangrijk dat we zo snel mogelijk nieuwe functionaliteiten kunnen toevoegen.
