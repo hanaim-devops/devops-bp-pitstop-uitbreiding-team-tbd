@@ -62,11 +62,29 @@ doorgaan met hun werkzaamheden.
 
 ## Level 3: Components
 
+### Customer Management
+
+![Component diagram CustomerManagementAPI.drawio.png](images%2FComponent%20diagram%20CustomerManagementAPI.drawio.png)
+
+In dit component diagram is te zien dat de CustomerManagementAPI wordt aangeroepen door de WebApp. Eerst wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de CustomerManagement database om data te lezen, te wijzigen of te verwijderen.
+
+### Workshop Management
+
+### Rental Management
+
+### Review Management
+
+Deze is er momenteel nog niet.
+
+### Rental Car Management
+
+### Vehicle Management
+
 ## Level 4: Code
 ![img.png](images/eventhandler.png)
 
-Hierboven staat een class diagram die gehaald is uit de RentalManagementAPI component. Deze classes zijn verantwoordelijk 
-voor het afhandelen van events uit RabbitMQ. Dit is een variant van de strategy pattern om zo de 
-EventHandlerWorker open closed te houden. Wanneer er een event binnenkomt met een bepaalde messagetype dan wordt er in de 
-lijst met handlers gekeken naar een overeenkomende handler die vervolgens verantwoordelijk wordt gesteld om dat specifieke 
+Hierboven staat een class diagram die gehaald is uit de RentalManagementAPI component. Deze classes zijn verantwoordelijk
+voor het afhandelen van events uit RabbitMQ. Dit is een variant van de strategy pattern om zo de
+EventHandlerWorker open closed te houden. Wanneer er een event binnenkomt met een bepaalde messagetype dan wordt er in de
+lijst met handlers gekeken naar een overeenkomende handler die vervolgens verantwoordelijk wordt gesteld om dat specifieke
 event af te handelen.
