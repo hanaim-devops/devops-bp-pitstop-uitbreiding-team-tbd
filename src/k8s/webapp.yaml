@@ -25,7 +25,7 @@ spec:
         - name: DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE
           value: "false"
         - name: DOTNET_USE_POLLING_FILE_WATCHER 
-          value: "false"
+          value: "true"
         image: luukjp/webapp:1.0
         imagePullPolicy: IfNotPresent
         name: webapp
