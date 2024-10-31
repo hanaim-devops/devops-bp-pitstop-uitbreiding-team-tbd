@@ -63,3 +63,10 @@ doorgaan met hun werkzaamheden.
 ## Level 3: Components
 
 ## Level 4: Code
+![img.png](images/eventhandler.png)
+
+Hierboven staat een class diagram die gehaald is uit de RentalManagementAPI component. Deze classes zijn verantwoordelijk 
+voor het afhandelen van events uit RabbitMQ. Dit is een variant van de strategy pattern om zo de 
+EventHandlerWorker open closed te houden. Wanneer er een event binnenkomt met een bepaalde messagetype dan wordt er in de 
+lijst met handlers gekeken naar een overeenkomende handler die vervolgens verantwoordelijk wordt gesteld om dat specifieke 
+event af te handelen.
