@@ -40,9 +40,23 @@ namespace ReviewManagementAPI.Services
         public Review GetReviewById(string id)
         {
             var review = _dbContext.Reviews.FirstOrDefault(r => r.Id == id);
-            if (review != null) return review;
+            if (review != null)
+            {
+                return review;
+            } 
             throw new Exception("Review not found");
         }
+        
+        public Review UpdateReview(string id, UpdateReview command)
+        {
+            var review = _dbContext.Reviews.FirstOrDefault(r => r.Id == id);
+            if (review == null) throw new Exception("Review not found");
+            
+            review.ReviewerName = command.ReviewerName;
+            review.Rating = command.Rating;
+            review.Content = command.Content;
+            _dbContext.SaveChanges();
+            return review;
 
 
         public void DeleteReview(string reviewId)
