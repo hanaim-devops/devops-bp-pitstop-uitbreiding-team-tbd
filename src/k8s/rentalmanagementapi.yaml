@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rentalmanagementapi
+    version: "1.0"
+  name: rentalmanagementapi
+  namespace: pitstop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rentalmanagementapi
+      version: "1.0"
+  template:
+    metadata:
+      labels:
+        app: rentalmanagementapi
+        version: "1.0"
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        image: luukjp/rentalmanagementapi:1.0
+        imagePullPolicy: IfNotPresent
+        name: rentalmanagementapi
+        ports:
+        - containerPort: 5400
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rentalmanagementapi
+  name: rentalmanagementapi
+  namespace: pitstop
+spec:
+  type: NodePort
+  ports:
+  - name: "http-5400"
+    port: 5400
+    targetPort: 5400
+    nodePort: 30009
+  selector:
+    app: rentalmanagementapi
