@@ -32,7 +32,7 @@ staat:
 
 ## Level 1: Context
 
-![Context.png](Context.png)
+![Context.png](images%2FContext.png)
 
 Hierboven staat de context diagram van de Pitstop applicatie. Goed te zien is dat het systeem twee verschillende gebruikers kent.
 De klant en de monteur. De klant kan een afspraak maken en de monteur kan deze afspraak accepteren of weigeren. 
@@ -42,7 +42,7 @@ een leenauto reserveren.
 
 
 ## Level 2: Container
-![Container.png](images/Container diagram.png)
+![Container diagram.png](images%2FContainer%20diagram.png)
 
 Hierboven staat het container diagram van de Pitstop applicatie. Goed te zien is dat pitstop geen monolith is. Hij is
 opgedeeld in meerdere microservices elke microservice heeft zijn eigen verantwoordelijkheid. Mocht een microservice afhankelijk
@@ -53,7 +53,7 @@ door de net aangemaakte customer toe te voegen aan hun eigen database. Dit volgt
 Hierbij houdt elke microservice zijn eigen context bij en slaan meerdere microservices misschien wel dezelfde data op. Zoals te zien
 op het volgende plaatje over een bounded context.
 
-![bounded context](/images/bounded_context.png)
+![bounded_context.png](images%2Fbounded_context.png)
 
 Deze aanpak voorkomt dat microservices veel met elkaar moeten communiceren. Daarnaast zorgt dit voor een stabielere applicatie.
 Mocht er een microservice uitvallen dan zal de rest van de applicatie nog steeds werken. En omdat ze een eigen versie bijhouden
@@ -109,7 +109,7 @@ In dit component diagram is te zien dat de RentalManagementEventHandler event no
 In dit component diagram is te zien dat de WorkshopManagementEventHandler event notificaties ontvangt van RabbitMQ. De WorkshopManagementEventHandler zal vervolgens de notificatie verwerken en de data toevoegen aan de WorkshopManagement database.
 
 ## Level 4: Code
-![img.png](images/eventhandler.png)
+![eventhandler.png](images%2Feventhandler.png)
 
 Hierboven staat een class diagram die gehaald is uit de RentalManagementAPI component. Deze classes zijn verantwoordelijk
 voor het afhandelen van events uit RabbitMQ. Dit is een variant van de strategy pattern om zo de
