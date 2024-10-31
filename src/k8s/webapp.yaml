@@ -24,6 +24,8 @@ spec:
           value: Production
         - name: DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE
           value: "false"
+        - name: DOTNET_USE_POLLING_FILE_WATCHER 
+          value: "false"
         image: luukjp/webapp:1.0
         imagePullPolicy: IfNotPresent
         name: webapp
@@ -41,11 +43,13 @@ metadata:
   name: webapp
   namespace: pitstop
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: "7005"
     port: 7005
     targetPort: 7005
+    protocol: TCP
+    nodePort: 31119
   selector:
     app: webapp
 
