@@ -1,11 +1,11 @@
-FROM pitstop-dotnet-sdk-base:1.0 AS build-env
+FROM luukjp/pitstop-dotnet-sdk-base:1.0 AS build-env
 WORKDIR /app
 
 # Install node
 ENV NODE_VERSION=20.x
 RUN apt-get -y update \
     && apt-get install -y curl \
-    && curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | sh - \ 
+    && curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | sh - \
     && apt-get install -y nodejs \
     && apt-get clean
 
@@ -23,7 +23,7 @@ RUN gulp default
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM pitstop-dotnet-aspnet-base:1.0
+FROM luukjp/pitstop-dotnet-aspnet-base:1.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 

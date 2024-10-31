@@ -10,4 +10,7 @@ public interface IReviewService
     List<Review> GetAllReviews();
     Review GetReviewById(string id);
     Review UpdateReview(string id, UpdateReview command);
+
+    void DeleteReview(string reviewId);
+    
 }

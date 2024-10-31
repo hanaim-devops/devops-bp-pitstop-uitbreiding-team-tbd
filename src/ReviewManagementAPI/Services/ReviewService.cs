@@ -57,6 +57,20 @@ namespace ReviewManagementAPI.Services
             review.Content = command.Content;
             _dbContext.SaveChanges();
             return review;
+
+
+        public void DeleteReview(string reviewId)
+        {
+            var review = _dbContext.Reviews.FirstOrDefault(r => r.Id == reviewId);
+            if (review != null)
+            {
+                _dbContext.Reviews.Remove(review);
+                _dbContext.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Review not found");
+            }
         }
     }
 }

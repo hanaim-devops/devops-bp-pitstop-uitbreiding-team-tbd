@@ -43,6 +43,12 @@ public class ReviewManagementAPI : IReviewManagementAPI
                 throw;
             }
         }
+
+
+        public async Task DeleteReview(string reviewId)
+        {
+            await _restClient.DeleteReview(reviewId);
+        }
     }
 
     // Maak een nieuwe review aan

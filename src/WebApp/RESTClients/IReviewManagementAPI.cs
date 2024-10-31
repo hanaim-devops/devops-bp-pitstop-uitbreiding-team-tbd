@@ -13,4 +13,7 @@ public interface IReviewManagementAPI
     
     [Put("/reviews/{id}")]
     Task UpdateReview([AliasAs("id")] string reviewId, UpdateReview command);
+
+    [Delete("/reviews/{reviewId}")]
+    Task DeleteReview(string reviewId);
 }
