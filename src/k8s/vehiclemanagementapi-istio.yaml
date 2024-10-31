@@ -25,7 +25,7 @@ spec:
         - name: ASPNETCORE_ENVIRONMENT
           value: Production
         image: luukjp/vehiclemanagementapi:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: vehiclemanagementapi
         ports:
         - containerPort: 5000

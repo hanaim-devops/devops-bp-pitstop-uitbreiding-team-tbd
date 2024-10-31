@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - image: maildev/maildev:1.1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: mailserver
         ports:
         - containerPort: 25

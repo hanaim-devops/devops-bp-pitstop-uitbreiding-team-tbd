@@ -27,7 +27,7 @@ spec:
         - name: DOTNET_USE_POLLING_FILE_WATCHER 
           value: "true"
         image: luukjp/rentalcarmanagementapi:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: rentalcarmanagementapi
         ports:
         - containerPort: 5300
