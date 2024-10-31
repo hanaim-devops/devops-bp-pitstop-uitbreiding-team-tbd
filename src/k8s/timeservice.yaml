@@ -26,7 +26,7 @@ spec:
           value: "false"
         - name: DOTNET_USE_POLLING_FILE_WATCHER 
           value: "true"
-        image: luukjp/pitstop/timeservice:1.0
-        imagePullPolicy: IfNotPresent
+        image: luukjp/timeservice:1.0
+        imagePullPolicy: Always
         name: timeservice
       restartPolicy: Always

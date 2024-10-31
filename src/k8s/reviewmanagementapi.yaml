@@ -27,7 +27,7 @@ spec:
         - name: DOTNET_USE_POLLING_FILE_WATCHER 
           value: "true"
         image: luukjp/reviewmanagementapi:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: reviewmanagementapi
         ports:
         - containerPort: 5500
