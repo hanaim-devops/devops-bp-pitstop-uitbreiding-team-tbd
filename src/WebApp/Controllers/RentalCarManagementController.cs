@@ -88,6 +88,31 @@ public class RentalCarManagementController : Controller
             return View("New", inputModel);
         }
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> Delete(string rentalCarId)
+    {
+        return await _resiliencyHelper.ExecuteResilient(async () =>
+        {
+            try
+            {
+                await _rentalCarManagementApi.DeleteReview(rentalCarId);
+                return RedirectToAction("Index");
+            }
+            catch (ApiException ex)
+            {
+                switch (ex.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        return NotFound("Rental car not found.");
+                    case HttpStatusCode.Conflict:
+                        return Conflict("Unable to delete rental car due to a conflict.");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }, View("Offline", new RentalCarManagementOfflineViewModel()));
+    }
 
     [HttpGet]
     public IActionResult Error()
