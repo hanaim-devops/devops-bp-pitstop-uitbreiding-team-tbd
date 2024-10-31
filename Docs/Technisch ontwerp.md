@@ -53,7 +53,7 @@ door de net aangemaakte customer toe te voegen aan hun eigen database. Dit volgt
 Hierbij houdt elke microservice zijn eigen context bij en slaan meerdere microservices misschien wel dezelfde data op. Zoals te zien
 op het volgende plaatje over een bounded context.
 
-![bounded_context.png](images%2Fbounded_context.png)
+![Bounded context.png](images%2FBounded%20context.png)
 
 Deze aanpak voorkomt dat microservices veel met elkaar moeten communiceren. Daarnaast zorgt dit voor een stabielere applicatie.
 Mocht er een microservice uitvallen dan zal de rest van de applicatie nog steeds werken. En omdat ze een eigen versie bijhouden
@@ -66,7 +66,7 @@ doorgaan met hun werkzaamheden.
 
 ![Component diagram CustomerManagementAPI.drawio.png](images%2FComponent%20diagram%20CustomerManagementAPI.drawio.png)
 
-In dit component diagram is te zien dat de CustomerManagementAPI wordt aangeroepen door de WebApp. Eerst wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de CustomerManagement database om data te lezen, te wijzigen of te verwijderen.
+In dit component diagram is te zien dat de CustomerManagementAPI wordt aangeroepen door de WebApp. Eerst wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de CustomerManagement database om data te lezen, te wijzigen of te verwijderen. Ook kan de service een event sturen naar RabbitMQ. Op deze manier kunnen andere services (die luisteren naar events van de CustomerManagementAPI, via RabbitMQ) het event ontvangen. Dit wordt bijvoorbeeld gedaan door de RentalManagementEventHandler en de WorkshopManagementEventHandler om de nieuwe customer toe te voegen aan de de RentalManagement en de WorkshopManagement database.
 
 ### Workshop Management
 
@@ -109,7 +109,7 @@ In dit component diagram is te zien dat de RentalManagementEventHandler event no
 In dit component diagram is te zien dat de WorkshopManagementEventHandler event notificaties ontvangt van RabbitMQ. De WorkshopManagementEventHandler zal vervolgens de notificatie verwerken en de data toevoegen aan de WorkshopManagement database.
 
 ## Level 4: Code
-![eventhandler.png](images%2Feventhandler.png)
+![eventhandler.jpg](images%2Feventhandler.jpg)
 
 Hierboven staat een class diagram die gehaald is uit de RentalManagementAPI component. Deze classes zijn verantwoordelijk
 voor het afhandelen van events uit RabbitMQ. Dit is een variant van de strategy pattern om zo de
