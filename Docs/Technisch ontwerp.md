@@ -81,8 +81,9 @@ In dit component diagram is te zien dat de WorkshopManagementAPI wordt aangeroep
 In dit component diagram is te zien dat de RentalManagementAPI wordt aangeroepen door de WebApp. Eerst wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de RentalManagement database om data te lezen, te wijzigen of te verwijderen.
 
 ### Review Management
+![Component ReviewManagementAPI.drawio.png](images%2FComponent%20ReviewManagementAPI.drawio.png)
 
-Deze is er momenteel nog niet.
+In dit component diagram is te zien dat de ReviewManagementAPI wordt aangeroepen door de WebApp. Als eerste wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de ReviewManagement database om data te lezen, te veranderenof te verwijderen.
 
 ### Rental Car Management
 
