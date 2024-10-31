@@ -27,3 +27,17 @@ Er is besloten om Draw.IO te gebruiken om het C4 Model te ontwerpen.
 ### Redenatie
 - **Tijdsbesparing:** Draw.IO is al bekend bij de teamleden en is makkelijk te gebruiken. Er is kort onderzocht naar Structurizr, maar dit programma is niet bekend bij de teamleden en zou meer tijd kosten om te leren en opzetten.
 - **Gebruiksvriendelijkheid:** Draw.IO is een online tool die makkelijk te gebruiken is en waarbij je makkelijk diagrammen kan maken.
+
+## ADR-003: Reservering wijzigen
+
+### Context
+Het systeem bevat een functie waarmee gebruikers gemaakte reserveringen kunnen wijzigen. Er was discussie over welke gegevens van een reservering gewijzigd kunnen worden.
+
+### Beslissing
+Er is besloten om enkel de einddatum en de huurauto van de reservering te wijzigen. De startdatum en de klantgegevens kunnen niet gewijzigd worden.
+
+### Redenatie
+- **Geen inlogmogelijkheden:** In het MVP dat wij ontwikkelen is geen login functionaliteit aanwezig, waardoor bij iedere reservering de klant gekozen kan worden. Logischerwijs wordt er later een loginsysteem ontwikkeld waardoor de niet gekozen hoeft te worden bij een reservering, maar hij automatisch wordt toegevoegd. Als een klant zijn/haar reservering wijzigt zal de klant altijs hetzelfde blijven. Daarom is ervoor gekozen ook nu geen klantgegevens te wijzigen.
+
+### Gevolg
+Door enkel de einddatum en de huurauto van de reservering te wijzigen, kunnen we ontwikkeltijd inzetten voor andere functionaliteiten die meer waarde toevoegen.
