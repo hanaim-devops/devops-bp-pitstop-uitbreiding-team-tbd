@@ -101,10 +101,13 @@ public class RentalCarManagementController : Controller
             }
             catch (ApiException ex)
             {
-                if (ex.StatusCode == HttpStatusCode.NotFound)
-                    return NotFound("Rental car not found.");
-                else if (ex.StatusCode == HttpStatusCode.Conflict)
-                    return Conflict("Unable to delete rental car due to a conflict.");
+                switch (ex.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        return NotFound("Rental car not found.");
+                    case HttpStatusCode.Conflict:
+                        return Conflict("Unable to delete rental car due to a conflict.");
+                }
             }
 
             return RedirectToAction("Index");
