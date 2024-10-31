@@ -70,7 +70,15 @@ In dit component diagram is te zien dat de CustomerManagementAPI wordt aangeroep
 
 ### Workshop Management
 
+![Component diagram Workshop.drawio.png](images%2FComponent%20diagram%20Workshop.drawio.png)
+
+In dit component diagram is te zien dat de WorkshopManagementAPI wordt aangeroepen door de WebApp. In de controller wordt alle logica uitgevoerd en wordt de repository aangeroepen die vervolgens gebruik maakt van de WorkshopManagement database om data te lezen, te wijzigen of te verwijderen.
+
 ### Rental Management
+
+![Component diagram RentalManagementAPI.drawio.png](images%2FComponent%20diagram%20RentalManagementAPI.drawio.png)
+
+In dit component diagram is te zien dat de RentalManagementAPI wordt aangeroepen door de WebApp. Eerst wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de RentalManagement database om data te lezen, te wijzigen of te verwijderen.
 
 ### Review Management
 
@@ -78,7 +86,27 @@ Deze is er momenteel nog niet.
 
 ### Rental Car Management
 
+![Component diagram RentalCarManagementAPI.drawio.png](images%2FComponent%20diagram%20RentalCarManagementAPI.drawio.png)
+
+In dit component diagram is te zien dat de RentalCarManagementAPI wordt aangeroepen door de WebApp. Eerst wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de RentalCarManagement database om data te lezen, te wijzigen of te verwijderen. Ook kan de service een event sturen naar RabbitMQ. Op deze manier kunnen andere services (die luisteren naar events van de RentalCarManagementAPI, via RabbitMQ) het event ontvangen. Dit wordt bijvoorbeeld gedaan door de RentalManagementEventHandler om de nieuwe rental car toe te voegen aan de RentalManagement database.
+
 ### Vehicle Management
+
+![Component diagram VehicleManagementAPI.drawio.png](images%2FComponent%20diagram%20VehicleManagementAPI.drawio.png)
+
+In dit component diagram is te zien dat de VehicleManagementAPI wordt aangeroepen door de WebApp. Eerst wordt de controller aangeroepen. Die stuurt vervolgens de request door naar de service. De service zal vervolgens de gebruik maken van de VehicleManagement database om data te lezen, te wijzigen of te verwijderen. Ook kan de service een event sturen naar RabbitMQ. Op deze manier kunnen andere services (die luisteren naar events van de VehicleManagementAPI, via RabbitMQ) het event ontvangen. Dit wordt bijvoorbeeld gedaan door de WorkshopManagementEventHandler om de nieuwe vehicle toe te voegen aan de WorkshopManagement database.
+
+### Rental Management Event Handler
+
+![Component diagram RentalManagementEventHandler.drawio.png](images%2FComponent%20diagram%20RentalManagementEventHandler.drawio.png)
+
+In dit component diagram is te zien dat de RentalManagementEventHandler event notificaties ontvangt van RabbitMQ. De RentalManagementEventHandler zal vervolgens de notificatie verwerken en de data toevoegen aan de RentalManagement database.
+
+### Workshop Management Event Handler
+
+![Component diagram WorkshopManagementEventHandler.drawio.png](images%2FComponent%20diagram%20WorkshopManagementEventHandler.drawio.png)
+
+In dit component diagram is te zien dat de WorkshopManagementEventHandler event notificaties ontvangt van RabbitMQ. De WorkshopManagementEventHandler zal vervolgens de notificatie verwerken en de data toevoegen aan de WorkshopManagement database.
 
 ## Level 4: Code
 ![img.png](images/eventhandler.png)
