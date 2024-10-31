@@ -24,6 +24,8 @@ kubectl delete pipelinerun workshopmanagementapi-build-run
 kubectl delete pipelinerun vehiclemanagementapi-build-run
 kubectl delete pipelinerun rentalmanagementapi-build-run
 kubectl delete pipelinerun rentalcarmanagementapi-build-run
+kubectl delete pipelinerun reviewmanagementapi-build-run
+kubectl delete pipelinerun rentalmanagementeventhandler-build-run
 kubectl apply -f ./pipeline-run/dotnet-aspnet-base-build-run.yaml
 kubectl apply -f ./pipeline-run/dotnet-runtime-base-build-run.yaml
 kubectl apply -f ./pipeline-run/dotnet-sdk-base-build-run.yaml
@@ -38,6 +40,9 @@ kubectl apply -f ./pipeline-run/workshopmanagementapi-build-run.yaml
 kubectl apply -f ./pipeline-run/vehiclemanagementapi-build-run.yaml
 kubectl apply -f ./pipeline-run/rentalmanagementapi-build-run.yaml
 kubectl apply -f ./pipeline-run/rentalcarmanagementapi-build-run.yaml
+kubectl apply -f ./pipeline-run/reviewmanagementapi-build-run.yaml
+kubectl apply -f ./pipeline-run/rentalmanagementeventhandler-build-run.yaml
+
 
 #tkn pipelinerun logs dotnet-aspnet-base-build-run --follow
 #tkn pipelinerun describe dotnet-aspnet-base-build-run

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rentalcarmanagementapi
+    version: "1.0"
+  name: rentalcarmanagementapi
+  namespace: pitstop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rentalcarmanagementapi
+      version: "1.0"
+  template:
+    metadata:
+      labels:
+        app: rentalcarmanagementapi
+        version: "1.0"
+    spec:
+      containers:
+      - env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
+        image: pitstop/rentalcarmanagementapi:1.0
+        imagePullPolicy: IfNotPresent
+        name: rentalcarmanagementapi
+        ports:
+        - containerPort: 5300
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rentalcarmanagementapi
+  name: rentalcarmanagementapi
+  namespace: pitstop
+spec:
+  type: NodePort
+  ports:
+  - name: "http-5300"
+    port: 5300
+    targetPort: 5300
+    nodePort: 30008
+  selector:
+    app: rentalcarmanagementapi

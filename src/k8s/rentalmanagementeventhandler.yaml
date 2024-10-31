@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rentalmanagementeventhandler
+    version: "1.0"
+  name: rentalmanagementeventhandler
+  namespace: pitstop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rentalmanagementeventhandler
+      version: "1.0"
+  template:
+    metadata:
+      labels:
+        app: rentalmanagementeventhandler
+        version: "1.0"
+    spec:
+      containers:
+      - env:
+        - name: DOTNET_ENVIRONMENT
+          value: Production
+        image: luukjp/rentalmanagementeventhandler:1.0
+        imagePullPolicy: IfNotPresent
+        name: rentalmanagementeventhandler
+      restartPolicy: Always
