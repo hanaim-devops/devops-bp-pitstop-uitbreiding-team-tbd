@@ -57,7 +57,7 @@ namespace ReviewManagementAPI.Services
             review.Content = command.Content;
             _dbContext.SaveChanges();
             return review;
-
+        }
 
         public void DeleteReview(string reviewId)
         {

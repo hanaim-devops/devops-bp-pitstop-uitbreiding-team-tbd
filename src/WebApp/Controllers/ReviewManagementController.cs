@@ -141,7 +141,7 @@ public class ReviewManagementController : Controller
         {
             try
             {
-                await _reviewManagementAPI.DeleteReview(reviewId);
+                await _reviewManagementApi.DeleteReview(reviewId);
                 return RedirectToAction("Index");
             }
             catch (ApiException ex)

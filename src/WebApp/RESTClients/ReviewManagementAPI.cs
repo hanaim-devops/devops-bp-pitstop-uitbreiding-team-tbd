@@ -43,9 +43,9 @@ public class ReviewManagementAPI : IReviewManagementAPI
                 throw;
             }
         }
+    }
 
-
-        public async Task DeleteReview(string reviewId)
+    public async Task DeleteReview(string reviewId) {
         {
             await _restClient.DeleteReview(reviewId);
         }
