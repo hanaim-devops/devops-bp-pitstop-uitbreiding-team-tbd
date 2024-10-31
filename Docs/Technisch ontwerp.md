@@ -28,7 +28,7 @@ Om de lezer het eenvoudig te maken is er een legenda opgesteld waarin beschreven
 welke onderdelen terug gaan komen in dit document en welke kleur daaraan gekoppeld
 staat:
 
-![img.png](img.png)
+![legenda.jpg](images%2Flegenda.jpg)
 
 ## Level 1: Context
 
@@ -53,7 +53,7 @@ door de net aangemaakte customer toe te voegen aan hun eigen database. Dit volgt
 Hierbij houdt elke microservice zijn eigen context bij en slaan meerdere microservices misschien wel dezelfde data op. Zoals te zien
 op het volgende plaatje over een bounded context.
 
-![Bounded context.png](images%2FBounded%20context.png)
+![Bounded context.jpg](images%2FBounded%20context.jpg)
 
 Deze aanpak voorkomt dat microservices veel met elkaar moeten communiceren. Daarnaast zorgt dit voor een stabielere applicatie.
 Mocht er een microservice uitvallen dan zal de rest van de applicatie nog steeds werken. En omdat ze een eigen versie bijhouden
