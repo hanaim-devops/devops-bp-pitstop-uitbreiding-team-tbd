@@ -27,6 +27,6 @@ spec:
         - name: DOTNET_USE_POLLING_FILE_WATCHER 
           value: "true"
         image: luukjp/workshopmanagementeventhandler:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: workshopmanagementeventhandler
       restartPolicy: Always

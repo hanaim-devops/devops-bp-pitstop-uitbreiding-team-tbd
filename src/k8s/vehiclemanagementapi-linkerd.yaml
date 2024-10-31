@@ -29,7 +29,7 @@ spec:
         - name: DOTNET_USE_POLLING_FILE_WATCHER 
           value: "true"
         image: luukjp/vehiclemanagementapi:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: vehiclemanagementapi
         ports:
         - containerPort: 5000
