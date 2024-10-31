@@ -41,5 +41,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<RentalCarManagementDBContext>();
+    dbContext.Database.Migrate();
+}
+
 app.MapControllers();
 app.Run();
