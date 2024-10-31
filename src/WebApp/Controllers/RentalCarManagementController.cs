@@ -20,7 +20,7 @@ public class RentalCarManagementController : Controller
         {
             var model = new RentalCarManagementViewModel
             {
-                // RentalCars = await _rentalCarManagementApi.GetRentalCars()
+                RentalCars = await _rentalCarManagementApi.GetRentalCars()
             };
             return View(model);
         }, View("Offline", new RentalCarManagementOfflineViewModel()));
@@ -31,11 +31,11 @@ public class RentalCarManagementController : Controller
     {
         return await _resiliencyHelper.ExecuteResilient(async () =>
         {
-            // RentalCar rentalCar = await _rentalCarManagementApi.GetRentalCarByLicenseNumber(licenseNumber);
+            RentalCar rentalCar = await _rentalCarManagementApi.GetRentalCarById(licenseNumber);
 
             var model = new RentalCarManagementDetailsViewModel
             {
-                // RentalCar = rentalCar
+                RentalCar = rentalCar
             };
             return View(model);
         }, View("Offline", new RentalCarManagementOfflineViewModel()));
@@ -64,7 +64,7 @@ public class RentalCarManagementController : Controller
                 try
                 {
                     RegisterRentalCar cmd = inputModel.MapToRegisterRentalCar();
-                    // await _rentalCarManagementApi.RegisterRentalCar(cmd);
+                    await _rentalCarManagementApi.RegisterRentalCar(cmd);
                     return RedirectToAction("Index");
                 }
                 catch (ApiException ex)
@@ -87,6 +87,31 @@ public class RentalCarManagementController : Controller
         {
             return View("New", inputModel);
         }
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Delete(string rentalCarId)
+    {
+        return await _resiliencyHelper.ExecuteResilient(async () =>
+        {
+            try
+            {
+                await _rentalCarManagementApi.DeleteReview(rentalCarId);
+                return RedirectToAction("Index");
+            }
+            catch (ApiException ex)
+            {
+                switch (ex.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        return NotFound("Rental car not found.");
+                    case HttpStatusCode.Conflict:
+                        return Conflict("Unable to delete rental car due to a conflict.");
+                }
+            }
+
+            return RedirectToAction("Index");
+        }, View("Offline", new RentalCarManagementOfflineViewModel()));
     }
 
     [HttpGet]
