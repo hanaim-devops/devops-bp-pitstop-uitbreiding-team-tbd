@@ -26,7 +26,7 @@ spec:
           value: "false"
         - name: DOTNET_USE_POLLING_FILE_WATCHER 
           value: "true"
-        image: pitstop/rentalcarmanagementapi:1.0
+        image: luukjp/rentalcarmanagementapi:1.0
         imagePullPolicy: IfNotPresent
         name: rentalcarmanagementapi
         ports:
