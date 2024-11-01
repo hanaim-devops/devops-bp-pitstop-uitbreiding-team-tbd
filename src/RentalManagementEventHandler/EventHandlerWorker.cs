@@ -54,8 +54,16 @@ public class EventHandlerWorker : IHostedService, IMessageHandlerCallback
     public async Task<bool> HandleMessageAsync(string messageType, string message)
     {
         JObject messageObject = MessageSerializer.Deserialize(message);
-        var handler = GetHandlerFor(messageType);
-        await handler.HandleAsync(messageObject);
+        try
+        {
+            var handler = GetHandlerFor(messageType);
+            await handler.HandleAsync(messageObject);
+        }
+        catch (Exception ex)
+        {
+            string messageId = messageObject.Property("MessageId") != null ? messageObject.Property("MessageId").Value<string>() : "[unknown]";
+            Log.Error(ex, "Error while handling {MessageType} message with id {MessageId}.", messageType, messageId);
+        }
         return true;
     }
 }
