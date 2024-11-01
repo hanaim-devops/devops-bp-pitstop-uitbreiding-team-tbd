@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using Pitstop.Infrastructure.Messaging;
 using Pitstop.RentalManagementAPI.DataAccess;
 using Pitstop.RentalManagementAPI.EventHandlers;
+using Pitstop.RentalManagementAPI.Exceptions;
 using Pitstop.RentalManagementAPI.Models;
 using Pitstop.RentalManagementEventHandler.Events;
 using Serilog;
@@ -17,9 +18,9 @@ public class EventHandlerWorker : IHostedService, IMessageHandlerCallback
 
     private IEnumerable<PitstopEventHandler> _handlers;
 
-    private PitstopEventHandler GetHandlerFor(string messageType)
+    private PitstopEventHandler? GetHandlerFor(string messageType)
     {
-        return _handlers.First(h => h.MessageType == messageType);
+        return _handlers.FirstOrDefault(h => h.MessageType == messageType);
     }
 
     public EventHandlerWorker(IMessageHandler messageHandler, RentalManagementDBContext dbContext, IEnumerable<PitstopEventHandler> handlers)
@@ -57,6 +58,7 @@ public class EventHandlerWorker : IHostedService, IMessageHandlerCallback
         try
         {
             var handler = GetHandlerFor(messageType);
+            if (handler == null) throw new HandlerNotFoundException();
             await handler.HandleAsync(messageObject);
         }
         catch (Exception ex)
