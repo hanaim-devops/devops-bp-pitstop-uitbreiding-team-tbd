@@ -1,0 +1,26 @@
+﻿apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: rentalcarmanagementapi-kill
+  namespace: default
+spec:
+  annotationCheck: "false"
+  engineState: "active"
+  chaosServiceAccount: litmus-admin
+  experiments:
+    - name: pod-delete
+      spec:
+        components:
+          env:
+            - name: TARGET_PODS
+              value: "rentalcarmanagementapi"
+            - name: TARGET_NAMESPACE
+              value: "default"
+            - name: LABEL
+              value: "app=RentalCarManagementAPI"
+            - name: CHAOS_DURATION
+              value: "30"
+            - name: CHAOS_INTERVAL
+              value: "10"
+            - name: FORCE
+              value: "true"

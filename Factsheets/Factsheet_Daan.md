@@ -1,74 +1,86 @@
 ﻿# Eigen bijdrage Daan Memelink
- 
-Als deliverable voor de individuele bijdrage in het beroepsproduct maak een eigen markdown bestand `<mijn-voornaam>.md` in je repo aan met tekst inclusief linkjes naar code en documentaties bestanden, pull requests, commit diffs. Maak hierin de volgende kopjes met een invulling.
- 
-Je schrapt verder deze tekst en vervangt alle andere template zaken, zodat alleen de kopjes over blijven. **NB: Aanwezigheid van template teksten na inleveren ziet de beoordelaar als een teken dat je documentatie nog niet af is, en hij/zij deze dus niet kan of hoeft te beoordelen**.
- 
-Je begin hier onder het hoofdkopje met een samenvatting van je bijdrage zoals je die hieronder uitwerkt. Best aan het einde schrijven. Zorg voor een soft landing van de beoordelaar, maar dat deze ook direct een beeld krijgt. Je hoeft geen heel verslag te schrijven. De kopjes kunnen dan wat korter met wat bullet lijst met links voor 2 tot 4 zaken en 1 of 2 inleidende zinnen erboven. Een iets uitgebreidere eind conclusie schrijf je onder het laatste kopje.
-
 
 ## 1. Code/platform bijdrage
 
 Competenties: *DevOps-1 Continuous Delivery*
 
-Beschrijf hier kort je bijdrage vanuit je rol, developer (Dev) of infrastructure specialist (Ops). Als Developer beschrijf en geef je links van minimaal 2 en maximaal 4 grootste bijdrages qua code functionaliteiten of non-functionele requirements. Idealiter werk je TDD (dus ook commit van tests en bijbehorende code tegelijk), maar je kunt ook linken naar geschreven automatische tests (unit tests, acceptance tests (BDD), integratie tests, end to end tests, performance/load tests, etc.). Als Opser geef je je minimaal 2 maximaal 4 belangrijkste bijdragen aan het opzetten van het Kubernetes platform, achterliggende netwerk infrastructuur of configuration management (MT) buiten Kubernetes (en punt 2).
- 
+Voor de Rental Management heb ik de frontend gemaakt.  
+De Review Management werkte niet door een spelfout in de naam van de solution. Dit heb ik (samen met nog een aantal andere kleine bugs) opgelost waardoor de Review Management gebuild kon worden.
+
+- [Frontend voor RentalCarManagement](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/bdcc9e844de26dbd34c34b0e38247ac114d6c5dd)
+- [Bug fixes RentalManagement & RentalCarManagement](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/a3a218d26ac021e7776b073ba09bf03601094d9b)
+- [Bug fixes ReviewManagement](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/fa0bb0e90ead9dd51e36936d2e72da50d3bb040b)
+
 ## 2. Bijdrage app configuratie/containers/kubernetes
 
 Competenties: *DevOps-2 Orchestration, Containerization*
+
+Bij het aanmaken van de nieuwe services RentalManagementAPI, RentalCarManagementAPI en RentalManagementEventHandler heb ik dockerfiles gemaakt. Ook heb ik de docker-compose file geupdate zodat de nieuwe services met docker compose gebuild en gestart kunnen worden.
  
-Beschrijf en geef hier links naar je minimaal 2 en maximaal 4 grootste bijdragen qua configuratie, of bijdrage qua 12factor app of container Dockerfiles en/of .yml bestanden of vergelijkbare config (rondom containerization en orchestration).
+- [Nieuwe services toegevoegd](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/198d53450a6ac9057344f9ce46016933178b5b55)
+- [Docker compose file aangepast](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/fa0bb0e90ead9dd51e36936d2e72da50d3bb040b#diff-cd2ae9f5a501d16253a461b919af1523e71916a984989885e6783203f4ee252a)
 
 ## 3. Bijdrage versiebeheer, CI/CD pipeline en/of monitoring
 
 Competenties: *DevOps-1 - Continuous Delivery*, *DevOps-3 GitOps*, *DevOps-5 - SlackOps*
 
-Beschrijf hier en geef links naar je bijdragen aan het opzetten en verder automatiseren van delivery pipeline, GitOps toepassing en/of het opzetten van monitoring, toevoegen van metrics en custom metrics en rapportages.
+Aan het begin van dit project hebben we onderling mondelinge afspraken gemaakt over de naamgeving van branches en pull requests. In de branches staat het issue nummer van de issues op het scrumbord. Pull requests hebben dezelfde naam als branches. 
+In de ReviewManagementAPI zat een spelfout (deze heette eerst ReviewManagmentAPI). Dit zorgde voor problemen. Samen met Danny heb ik dit opgelost. Ik heb de commit gemaakt, maar heb (voor traceerbaarheid) Danny als co-author toegevoegd aan de commit.
 
-NB Het gebruik van *versiebeheer* ((e.g. git)) hoort bij je standaardtaken en deze hoef je onder dit punt NIET te beschrijven, het gaat hier vooral om documenteren van processtandaarden, zoals toepassen van een pull model.
+- [Branch naam gemaakt conform afspraken](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/tree/feature/%238-reservering-wijzigen)
+- [Pull request gemaakt conform afspraken](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/35)
+- [Commit met co-author](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/fa0bb0e90ead9dd51e36936d2e72da50d3bb040b)
 
 ## 4. Onderzoek
 
 Competenties: *Nieuwsgierige houding*
 
-Beschrijf hier voor het Course BP kort je onderzochte technologie met een link naar je blog post, of het toepassen ervan gelukt is en hoe, of waarom niet. Beschrijf evt. kort extra leerervaringen met andere technologieen of verdieping sinds het blog. 
+Tijdens de course-fase heb ik onderzoek gedaan naar Litmus Chaos. Zie [mijn blog post hier](https://github.com/hanaim-devops/devops-blog-DaanMemelink/tree/main/src/robuustheid-voor-microservices).
+Ik heb geprobeerd om LitmusChaos te implementeren in de Pitstop applicatie. De installatie van het ChaosCenter mislukte echter doordat MongoDB een persistent volume vereiste, wat niet kon in Rancher.
+Ik heb dit gedebugged door te kijken naar de status van de verschillende pods. Daarin was te zien dat de LitmusChaos services aan het wachten waren op MongoDB. In de logs van MongoDB was te zien dat deze een persistent volume nodig had.  
+In [ChaosExperiment.yaml](..%2FDocs%2Flitmuschaos%2FChaosExperiment.yaml) heb ik de ChaosExperiment aangemaakt. Als LitmusChaos het zou doen op Rancher zou ik dit experiment kunnen uitvoeren waarmee de RentalCarManagementAPI gekilled wordt.
 
-Tijdens het grote project beschrijf je hier onderzoek naar het domein en nieuwe onderzochte/gebruikte DevOps technologieën. Wellicht heb je nogmaals de voor blog onderzochte technologie kunnen toepassen in een andere context. Verder heb je nu een complex domein waar je in moet verdiepen en uitvragen bij de opdrachtgever. Link bijvoorbeeld naar repo's met POC's of, domein modellen of beschrijf andere onderwerpen en link naar gebruikte bronnen.
-
-Als de tijdens course onderzochte technologie wel toepasbaar is kun je dit uiteraard onder dit punt noemen. Of wellicht was door een teamgenoot onderzochte technologie relevant, waar jij je nu verder in verdiept hebt en mee gewerkt hebt, dus hier kunt beschrijven. Tot slot kun je hier ook juist een korte uitleg geef over WAAROM  jouw eerder onderzochte technologie dan precies niet relevant of inpasbaar was. Dit is voor een naieve buitenstaander niet altijd meteen duidelijk, maar kan ook heel interessant zijn. Bijvoorbeeld dat [gebruik van Ansible in combi met Kubernetes](https://www.ansible.com/blog/how-useful-is-ansible-in-a-cloud-native-kubernetes-environment) niet handig blijkt. Ook als je geen uitgebreid onderzoek hebt gedaan of ADR hebt waar je naar kunt linken, dan kun je onder dit kopje wel alsnog kort conceptuele kennis duidelijk maken.
- 
 ## 5. Bijdrage code review/kwaliteit anderen en security
 
 Competenties: *DevOps-7 - Attitude*, *DevOps-4 DevSecOps*
 
-Beschrijf hier en geef links naar de minimaal 2 en maximaal 4 grootste *review acties* die je gedaan hebt, bijvoorbeeld pull requests incl. opmerkingen. Het interessantst zijn natuurlijk gevallen waar code niet optimaal was. Zorg dat je minstens een aantal reviews hebt waar in gitlab voor een externe de kwestie ook duidelijk is, in plaats van dat je dit altijd mondeling binnen het team oplost.
+Op de pullrequests van Danny en Kevin over de ReviewManagement service heb ik twee reviews gedaan. Ik heb kritisch gekeken naar de code en gezegd wat er verbeterd kon worden voordat de code naar de development branch gemerged mocht worden.
 
-https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/30#pullrequestreview-2401757022
-https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/31#pullrequestreview-2401839322
+- [Review op pull request ReviewManagement sterren geven](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/30#pullrequestreview-2401757022)
+- [Review op pull request ReviewManagement bericht toevoegen aan review](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/31#pullrequestreview-2401839322)
 
 ## 6. Bijdrage documentatie
 
 Competenties: *DevOps-6 Onderzoek*
 
-Zet hier een links naar en geef beschrijving van je C4 diagram of diagrammen, README of andere markdown bestanden, ADR's of andere documentatie. Bij andere markdown bestanden of doumentatie kun je denken aan eigen proces documentatie, zoals code standaarden, commit- of branchingconventies. Tot slot ook user stories en acceptatiecriteria (hopelijk verwerkt in gitlab issues en vertaalt naar `.feature` files) en evt. noemen en verwijzen naar handmatige test scripts/documenten.
- 
+Ik heb verschillende documentatietaken opgepakt. Zo heb ik een ADR gemaakt, een component diagram gemaakt en de component diagrammen toegevoegd aan het technisch ontwerp.
+
+- [ADR toegevoegd](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/134cbd6d76974900cafef36916a0ca656b383f56)
+- [CustomerManagement component diagram gemaakt](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/99edae1bd8512c4402e8b1d7b12fb3580d790731)
+- [Technisch Ontwerp component diagrammen toegevoegd](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/98d8790067c190ebd1d94aa60824feba92e8c77f)
+
 ## 7. Bijdrage Agile werken, groepsproces, communicatie opdrachtgever en soft skills
 
 Competenties: *DevOps-1 - Continuous Delivery*, *Agile*
 
-Beschrijf hier minimaal 2 en maximaal 4 situaties van je inbreng en rol tijdens Scrum ceremonies. Beschrijf ook feedback of interventies tijdens Scrum meetings, zoals sprint planning of retrospective die je aan groespgenoten hebt gegeven.
+Tijdens de sprint planning van de tweede week van het project en tijdens de laatste sprint review ben ik voorzitter geweest. Hierin probeerde ik de tijd te bewaken en aan het einde van elk onderwerp te inventariseren of er mensen nog vragen of opmerkingen hadden.  
+Tijdens de sprint review heb ik aangegeven dat we als team door moeten gaan met het helpen bij elkaars taken, hier was de rest van de groep het helemaal mee eens. Ook heb ik gezegd dat we het planningsbord beter moeten bijhouden en de tijd voor de persoonlijke factsheet beter moeten inplannen. 
 
-Beschrijf tijdens het project onder dit kopje ook evt. verdere activiteiten rondom communicatie met de opdrachtgever of domein experts, of andere meer 'professional skills' of 'soft skilss' achtige zaken.
-  
 ## 8. Leerervaringen
 
 Competenties: *DevOps-7 - Attitude*
 
-Geef tot slot hier voor jezelf minimaal 2 en maximaal **4 tops** en 2 dito (2 tot 4) **tips** á la professional skills die je kunt meenemen in je verdere loopbaan. Beschrijf ook de voor jezelf er het meest uitspringende hulp of feedback van groepsgenoten die je (tot dusver) hebt gehad tijdens het project.
+**Tips**
+- Als ik van een onderwerp geen verstand had vroeg ik al snel anderen met meer verstand van het onderwerp naar een oplossing. Ik kreeg de feedback dat ik zelf wat langer moet zoeken naar een oplossing en als ik er dan nog steeds niet uit kom naar anderen kan vragen.
+- Een tip voor mij en de rest van de groep is plannen. We hadden nu meer prioriteit gegeven aan de functionaliteiten in plaats van de documentatie. Daardoor kwamen we op het einde een beetje in tijdsnood.
+
+**Tops**
+- Gestructureerde meetings. De twee keren dat ik voorzitter was bij de scrum meetings kreeg ik de feedback dat ik een duidelijke structuur aan de meetings bracht.
+- Van mijn groepsgenoten kreeg ik te horen dat mijn communicatie helder was en dat het maken van afspraken daarom makkelijk gaat.
 
 ## 9. Conclusie & feedback
 
 Competenties: *DevOps-7 - Attitude*
 
-Schrijf een conclusie van al bovenstaande punten. En beschrijf dan ook wat algemener hoe je terugkijkt op het project. Geef wat constructieve feedback, tips aan docenten/beoordelaars e.d. En beschrijf wat je aan devops kennis, vaardigheden of andere zaken meeneemt naar je afstudeeropdracht of verdere loopbaan. 
-
+Dit project gaf me waardevolle praktijkervaring met DevOps, vooral in containerisatie en event handling. De focus op goede communicatie en samenwerking verbeterde onze workflow en codekwaliteit.
+Voor het afstuderen en mijn verdere loopbaan neem ik de kennis over microservices, containerisatie en event handling mee.
