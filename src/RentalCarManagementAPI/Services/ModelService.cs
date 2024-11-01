@@ -34,7 +34,7 @@ public class ModelService(RentalCarManagementDBContext dbContext, IBrandService 
         };
         
         _dbContext.Models.Add(model);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         
         var @event = _mapper.Map<ModelRegistered>(model);
         await _publisher.PublishMessageAsync(@event.MessageType, @event, "");

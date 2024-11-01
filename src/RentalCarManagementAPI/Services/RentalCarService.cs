@@ -36,7 +36,7 @@ public class RentalCarService(RentalCarManagementDBContext dbContext, IModelServ
         };
         
         _dbContext.RentalCars.Add(rentalCar);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         var @event = _mapper.Map<RentalCarRegistered>(rentalCar);
         await _publisher.PublishMessageAsync(@event.MessageType, @event, "");
         

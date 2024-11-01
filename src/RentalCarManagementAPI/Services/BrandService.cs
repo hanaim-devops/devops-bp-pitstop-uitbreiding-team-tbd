@@ -31,7 +31,7 @@ public class BrandService(RentalCarManagementDBContext dbContext, IMessagePublis
         };
         
         _dbContext.Brands.Add(brand);
-        _dbContext.SaveChanges();
+        await _dbContext.SaveChangesAsync();
         
         var @event = _mapper.Map<BrandRegistered>(brand);
         await _publisher.PublishMessageAsync(@event.MessageType, @event, "");
