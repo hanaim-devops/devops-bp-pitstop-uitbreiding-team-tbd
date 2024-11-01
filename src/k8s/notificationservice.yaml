@@ -22,7 +22,11 @@ spec:
       - env:
         - name: DOTNET_ENVIRONMENT
           value: Production
+        - name: DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE
+          value: "false"
+        - name: DOTNET_USE_POLLING_FILE_WATCHER 
+          value: "true"
         image: luukjp/notificationservice:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: notificationservice
       restartPolicy: Always

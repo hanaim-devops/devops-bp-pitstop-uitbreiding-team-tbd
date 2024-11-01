@@ -35,7 +35,7 @@ spec:
         - name: RABBITMQ_CONFIG_FILE
           value: /etc/pitstop/rabbitmq.conf
         image: rabbitmq:3-management-alpine
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: rabbitmq
         ports:
         - containerPort: 15672

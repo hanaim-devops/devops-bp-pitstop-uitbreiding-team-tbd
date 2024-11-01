@@ -22,7 +22,11 @@ spec:
       - env:
         - name: DOTNET_ENVIRONMENT
           value: Production
-        image: luukjp/pitstop/timeservice:1.0
-        imagePullPolicy: IfNotPresent
+        - name: DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE
+          value: "false"
+        - name: DOTNET_USE_POLLING_FILE_WATCHER 
+          value: "true"
+        image: luukjp/timeservice:1.0
+        imagePullPolicy: Always
         name: timeservice
       restartPolicy: Always

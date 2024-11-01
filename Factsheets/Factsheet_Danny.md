@@ -11,13 +11,18 @@ Je begin hier onder het hoofdkopje met een samenvatting van je bijdrage zoals je
 
 Competenties: *DevOps-1 Continuous Delivery*
 
-Beschrijf hier kort je bijdrage vanuit je rol, developer (Dev) of infrastructure specialist (Ops). Als Developer beschrijf en geef je links van minimaal 2 en maximaal 4 grootste bijdrages qua code functionaliteiten of non-functionele requirements. Idealiter werk je TDD (dus ook commit van tests en bijbehorende code tegelijk), maar je kunt ook linken naar geschreven automatische tests (unit tests, acceptance tests (BDD), integratie tests, end to end tests, performance/load tests, etc.). Als Opser geef je je minimaal 2 maximaal 4 belangrijkste bijdragen aan het opzetten van het Kubernetes platform, achterliggende netwerk infrastructuur of configuration management (MT) buiten Kubernetes (en punt 2).
+In de volgende commits ben ik bezig geweest met het aanmaken van van een review, hierbij kan een user gekozen worden, een aantal sterren en er kan een bericht aan toegevoegd worden. Dit heb ik ook deels in samenwerking gedaan met andere maar hier een aantal commits van mij([commit 1](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/27/commits/57ea92a7a2550cf3312515677813c4a208510766), [commit 2](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/31/commits/341b8232abfc45cc63e5507a74fa054ed0e673c6)).
+Ook heb ik zelf gewerkt aan het verwijderen van een review door een kolom in de tabel toe te voegen met een delete knop en dit word afgehandeld op de back-end, zie de volgende commits([commit 1](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/38/commits/330f94ef54ebe2f7d8265d56025d9ac96bf9bcb8), [commit 2](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/38/commits/bef0782939ae53ae186d1623190f032b687b2745))
+
+Voor de Opser commits kijk bij #2, hierbij zie je commits voor de configuratie die ik heb uitgevoerd.
 
 ## 2. Bijdrage app configuratie/containers/kubernetes
 
 Competenties: *DevOps-2 Orchestration, Containerization*
 
 Ik heb configuratie van de VPS toegepast met met ansible, dit is te zien in [deze commit](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/cf188f5ef18a1034dbabd97f06a755692d29e7e0).
+
+In de volgende commit heb ik samen met Daan een nieuwe microservice aangemaakt, hierbij moest ook de container aangemaakt worden. Dit hebben wij [hier](https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/30/commits/fa0bb0e90ead9dd51e36936d2e72da50d3bb040b) dus toegepast.
 
 ## 3. Bijdrage versiebeheer, CI/CD pipeline en/of monitoring
 

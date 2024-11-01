@@ -22,8 +22,12 @@ spec:
       - env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Production
+        - name: DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE
+          value: "false"
+        - name: DOTNET_USE_POLLING_FILE_WATCHER 
+          value: "true"
         image: luukjp/webapp:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: webapp
         ports:
         - containerPort: 7005
@@ -39,11 +43,13 @@ metadata:
   name: webapp
   namespace: pitstop
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: "7005"
     port: 7005
     targetPort: 7005
+    protocol: TCP
+    nodePort: 31119
   selector:
     app: webapp
 

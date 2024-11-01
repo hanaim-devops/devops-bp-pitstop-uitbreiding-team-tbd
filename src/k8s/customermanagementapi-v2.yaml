@@ -22,8 +22,12 @@ spec:
       - env:
         - name: ASPNETCORE_ENVIRONMENT
           value: Production
+        - name: DOTNET_HOSTBUILDER__RELOADCONFIGONCHANGE
+          value: "false"
+        - name: DOTNET_USE_POLLING_FILE_WATCHER 
+          value: "true"
         image: luukjp/customermanagementapi:2.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: customermanagementapi
         ports:
         - containerPort: 5100
