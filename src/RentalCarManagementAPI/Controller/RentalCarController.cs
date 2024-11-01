@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Pitstop.RentalCarManagementAPI.Commands;
 using Pitstop.RentalCarManagementAPI.Exceptions;
@@ -18,9 +19,9 @@ public class RentalCarController(IRentalCarService carService) : ControllerBase
     private IRentalCarService _carService = carService;
 
     [HttpPost]
-    public RentalCar RegisterRentalCar([FromBody] RegisterRentalCar command)
+    public async Task<RentalCar> RegisterRentalCar([FromBody] RegisterRentalCar command)
     {
-        return carService.Add(command);
+        return await carService.Add(command);
     }
     
     [HttpGet]

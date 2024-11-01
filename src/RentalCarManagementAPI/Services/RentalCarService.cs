@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -21,12 +22,12 @@ public class RentalCarService(RentalCarManagementDBContext dbContext, IModelServ
     private IMessagePublisher _publisher = publisher;
     private IMapper _mapper = mapper;
     
-    public RentalCar Add(RegisterRentalCar command)
+    public async Task<RentalCar> Add(RegisterRentalCar command)
     {
         var existingCar = _dbContext.RentalCars.FirstOrDefault(c => c.LicenseNumber == command.LicenseNumber);
         if (existingCar != null) throw new LicensePlateAlreadyRegistered();
         
-        var model = _modelService.GetByName(command.Brand, command.Model);
+        var model = await _modelService.GetByName(command.Brand, command.Model);
         var rentalCar = new RentalCar()
         {
             Id = Guid.NewGuid().ToString(),
@@ -37,7 +38,7 @@ public class RentalCarService(RentalCarManagementDBContext dbContext, IModelServ
         _dbContext.RentalCars.Add(rentalCar);
         _dbContext.SaveChanges();
         var @event = _mapper.Map<RentalCarRegistered>(rentalCar);
-        _publisher.PublishMessageAsync(@event.MessageType, @event, "");
+        await _publisher.PublishMessageAsync(@event.MessageType, @event, "");
         
         return rentalCar;
     }

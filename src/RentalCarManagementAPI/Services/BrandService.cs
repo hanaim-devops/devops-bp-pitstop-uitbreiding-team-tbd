@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Pitstop.Infrastructure.Messaging;
 using Pitstop.RentalCarManagementAPI.Events;
@@ -15,13 +16,13 @@ public class BrandService(RentalCarManagementDBContext dbContext, IMessagePublis
     private IMessagePublisher _publisher = publisher;
     private IMapper _mapper = mapper;
     
-    public Brand GetByName(string name)
+    public async Task<Brand> GetByName(string name)
     {
         var brand = _dbContext.Brands.FirstOrDefault(b => b.Name == name);
-        return brand ?? Add(name);
+        return brand ?? await Add(name);
     }
     
-    private Brand Add(string name)
+    private async Task<Brand> Add(string name)
     {
         var brand = new Brand()
         {
@@ -33,7 +34,7 @@ public class BrandService(RentalCarManagementDBContext dbContext, IMessagePublis
         _dbContext.SaveChanges();
         
         var @event = _mapper.Map<BrandRegistered>(brand);
-        _publisher.PublishMessageAsync(@event.MessageType, @event, "");
+        await _publisher.PublishMessageAsync(@event.MessageType, @event, "");
         
         return brand;
     }

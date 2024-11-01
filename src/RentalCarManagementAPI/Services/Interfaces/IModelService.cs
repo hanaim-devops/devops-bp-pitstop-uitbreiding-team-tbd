@@ -1,8 +1,9 @@
-﻿using RentalCarManagementAPI.Models;
+﻿using System.Threading.Tasks;
+using RentalCarManagementAPI.Models;
 
 namespace Pitstop.RentalCarManagementAPI.Services.Interfaces;
 
 public interface IModelService
 {
-    public Model GetByName(string brand, string name);
+    public Task<Model> GetByName(string brand, string name);
 }
