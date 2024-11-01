@@ -9,17 +9,25 @@ Je begin hier onder het hoofdkopje met een samenvatting van je bijdrage zoals je
 
 ## 1. Code/platform bijdrage
 
+
+
 Competenties: *DevOps-1 Continuous Delivery*
 
 Beschrijf hier kort je bijdrage vanuit je rol, developer (Dev) of infrastructure specialist (Ops). Als Developer beschrijf en geef je links van minimaal 2 en maximaal 4 grootste bijdrages qua code functionaliteiten of non-functionele requirements. Idealiter werk je TDD (dus ook commit van tests en bijbehorende code tegelijk), maar je kunt ook linken naar geschreven automatische tests (unit tests, acceptance tests (BDD), integratie tests, end to end tests, performance/load tests, etc.). Als Opser geef je je minimaal 2 maximaal 4 belangrijkste bijdragen aan het opzetten van het Kubernetes platform, achterliggende netwerk infrastructuur of configuration management (MT) buiten Kubernetes (en punt 2).
  
 ## 2. Bijdrage app configuratie/containers/kubernetes
 
+
+
 Competenties: *DevOps-2 Orchestration, Containerization*
  
 Beschrijf en geef hier links naar je minimaal 2 en maximaal 4 grootste bijdragen qua configuratie, of bijdrage qua 12factor app of container Dockerfiles en/of .yml bestanden of vergelijkbare config (rondom containerization en orchestration).
 
 ## 3. Bijdrage versiebeheer, CI/CD pipeline en/of monitoring
+
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/50c42152ced359a0318853ee00d35121cd44e958
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/a6e321c0fce7f56d4f07c78e39ab68f55b2dc62f
+
 
 Competenties: *DevOps-1 - Continuous Delivery*, *DevOps-3 GitOps*, *DevOps-5 - SlackOps*
 
@@ -28,6 +36,8 @@ Beschrijf hier en geef links naar je bijdragen aan het opzetten en verder automa
 NB Het gebruik van *versiebeheer* ((e.g. git)) hoort bij je standaardtaken en deze hoef je onder dit punt NIET te beschrijven, het gaat hier vooral om documenteren van processtandaarden, zoals toepassen van een pull model.
 
 ## 4. Onderzoek
+
+https://github.com/hanaim-devops/devops-blog-luukjp/blob/main/src/tekton-jenkins-met-een-kubernetes-sausje/README.md
 
 Competenties: *Nieuwsgierige houding*
 
@@ -39,11 +49,21 @@ Als de tijdens course onderzochte technologie wel toepasbaar is kun je dit uiter
  
 ## 5. Bijdrage code review/kwaliteit anderen en security
 
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/38
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/26
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/21
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/pull/24
+
 Competenties: *DevOps-7 - Attitude*, *DevOps-4 DevSecOps*
 
 Beschrijf hier en geef links naar de minimaal 2 en maximaal 4 grootste *review acties* die je gedaan hebt, bijvoorbeeld pull requests incl. opmerkingen. Het interessantst zijn natuurlijk gevallen waar code niet optimaal was. Zorg dat je minstens een aantal reviews hebt waar in gitlab voor een externe de kwestie ook duidelijk is, in plaats van dat je dit altijd mondeling binnen het team oplost.
  
 ## 6. Bijdrage documentatie
+
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/blob/main/tekton/tekton.md
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/blob/main/tekton/volume-info.md
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/commit/9cf6194749fe227025e534583072b5e692ca6ce4
+https://github.com/hanaim-devops/devops-bp-pitstop-uitbreiding-team-tbd/blob/main/Docs/images/Component%20diagram%20VehicleManagementAPI.drawio.png
 
 Competenties: *DevOps-6 Onderzoek*
 
@@ -58,6 +78,14 @@ Beschrijf hier minimaal 2 en maximaal 4 situaties van je inbreng en rol tijdens 
 Beschrijf tijdens het project onder dit kopje ook evt. verdere activiteiten rondom communicatie met de opdrachtgever of domein experts, of andere meer 'professional skills' of 'soft skilss' achtige zaken.
   
 ## 8. Leerervaringen
+
+Tops:
+- Git kennis toepast via git cli 
+- Doorzetter
+
+Tips:
+- Vaker commits pushen nu stapelen de commits op local machine
+- Betere communiceren
 
 Competenties: *DevOps-7 - Attitude*
 
