@@ -34,7 +34,7 @@ op de databases van de microservices.
 TV-202 en TV-304
 
 
-## 📈 Information & Reporting: 6
+## 📈 Information & Reporting: 8
 
 IR-201: Gedeeld informatiemodel: Waarna er een foutmelding komt wordt deze in de logservice gelogd.
 IR-202: Wij hebben tekton geïmplementeerd waarin tijdens het uitvoeren van de pipeline ook foutmeldingen of infomeldingen gelogd.
